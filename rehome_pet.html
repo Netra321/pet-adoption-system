@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rehome Your Pet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 35px;
+         
+          
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .option-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .option {
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            cursor: pointer;
+        }
+        .option.selected {
+            border-color: orange;
+            background-color: #fff3e0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: orange;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .terms {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+    function toggleSelect(groupClass, element) {
+        document.querySelectorAll('.' + groupClass + ' .option').forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+
+        if(groupClass === 'pet-type') {
+            const breedSelect = document.getElementById('breed');
+            breedSelect.innerHTML = '<option>Select breed here...</option>';
+
+            let breeds = [];
+
+            if(element.textContent.includes('Dog')) {
+                breeds = [
+                    'Akita', 'Australian Shepherd', 'Basset Hound', 'Beagle', 'Bernese Mountain Dog', 'Border Collie',
+                    'Boston Terrier', 'Boxer', 'Bulldog', 'Chihuahua', 'Cocker Spaniel', 'Dachshund', 'Doberman Pinscher',
+                    'French Bulldog', 'German Shepherd', 'Golden Retriever', 'Great Dane', 'Labrador Retriever',
+                    'Maltese', 'Miniature Schnauzer', 'Papillon', 'Pomeranian', 'Rottweiler', 'Shih Tzu',
+                    'Shetland Sheepdog', 'Siberian Husky', 'Staffordshire Bull Terrier', 'Whippet', 'Yorkshire Terrier'
+                ];
+            } else if(element.textContent.includes('Cat')) {
+                breeds = [
+                    'Abyssinian', 'American Shorthair', 'Balinese', 'Bengal', 'British Shorthair', 'Burmese',
+                    'Cornish Rex', 'Devon Rex', 'Exotic Shorthair', 'Himalayan', 'Maine Coon', 'Manx', 'Norwegian Forest Cat',
+                    'Oriental Shorthair', 'Persian', 'Ragdoll', 'Russian Blue', 'Scottish Fold', 'Siamese',
+                    'Sphynx', 'Turkish Angora'
+                ];
+            }
+
+            // Sort breeds alphabetically
+            breeds.sort();
+
+            breeds.forEach(breed => {
+                const option = document.createElement('option');
+                option.textContent = breed;
+                breedSelect.appendChild(option);
+            });
+        }
+    }
+</script>
+
+</head>
+<body>
+    <div class="form-container">
+        <h2>Rehome a Pet</h2>
+        <form>
+            <label>Pet Name?</label>
+            <input type="text" name="petName">
+
+            <label>Pet Type?</label>
+            <div class="option-group pet-type">
+                <div class="option" onclick="toggleSelect('pet-type', this)">🐶 Dog</div>
+                <div class="option" onclick="toggleSelect('pet-type', this)">🐱 Cat</div>
+            </div>
+
+            <label>Pet Breed?</label>
+            <select name="breed" id="breed">
+                <option>Select breed here...</option>
+            </select>
+
+            <label>Age of your Pet?</label>
+            <div class="option-group pet-age">
+                <div class="option" onclick="toggleSelect('pet-age', this)">Puppyhood<br><small>Upto 6 Months</small></div>
+                <div class="option" onclick="toggleSelect('pet-age', this)">Adolescence<br><small>6 - 18 Months</small></div>
+                <div class="option" onclick="toggleSelect('pet-age', this)">Adulthood<br><small>1.5 - 3 years</small></div>
+                <div class="option" onclick="toggleSelect('pet-age', this)">Senior<br><small>3 years or more</small></div>
+            </div>
+
+            <label>Pet Gender?</label>
+            <div class="option-group pet-gender">
+                <div class="option" onclick="toggleSelect('pet-gender', this)">Male</div>
+                <div class="option" onclick="toggleSelect('pet-gender', this)">Female</div>
+            </div>
+
+            <label>Pet Vaccination?</label>
+            <div class="option-group pet-vaccinated">
+                <div class="option" onclick="toggleSelect('pet-vaccinated', this)">Yes, Pet is Vaccinated</div>
+                <div class="option" onclick="toggleSelect('pet-vaccinated', this)">No, Pet is not Vaccinated</div>
+            </div>
+
+            <label>Pet Neutered?</label>
+            <div class="option-group pet-neutered">
+                <div class="option" onclick="toggleSelect('pet-neutered', this)">Yes,Pet is Neutered</div>
+                <div class="option" onclick="toggleSelect('pet-neutered', this)">No,Pet is not Neutered</div>
+            </div>
+
+            <label>Pet Spayed?</label>
+            <div class="option-group pet-spayed">
+                <div class="option" onclick="toggleSelect('pet-spayed', this)">Yes,Pet is Spayed</div>
+                <div class="option" onclick="toggleSelect('pet-spayed', this)">No,Pet is not Spayed</div>
+            </div>
+
+            <label>Pet Shots up to Date?</label>
+            <div class="option-group pet-shots">
+                <div class="option" onclick="toggleSelect('pet-shots', this)">Yes,Shots up to Date</div>
+                <div class="option" onclick="toggleSelect('pet-shots', this)">No,Shots not up to Date</div>
+            </div>
+
+            <label>Is your pet good with dogs?</label>
+            <div class="option-group good-dogs">
+                <div class="option" onclick="toggleSelect('good-dogs', this)">Yes,good with dogs</div>
+                <div class="option" onclick="toggleSelect('good-dogs', this)">No,not good with dogs</div>
+            </div>
+
+            <label>Is your pet good with cats?</label>
+            <div class="option-group good-cats">
+                <div class="option" onclick="toggleSelect('good-cats', this)">Yes,good with cats</div>
+                <div class="option" onclick="toggleSelect('good-cats', this)">No,not good with cats</div>
+            </div>
+
+            <label>Is your pet good with kids?</label>
+            <div class="option-group good-kids">
+                <div class="option" onclick="toggleSelect('good-kids', this)">Yes,good with kids</div>
+                <div class="option" onclick="toggleSelect('good-kids', this)">No,not good with kids</div>
+            </div>
+
+            <label>Why do you want to donate the Pet?</label>
+            <textarea name="reason" rows="4"></textarea>
+
+            <button type="submit">Submit Pet for Rehoming</button>
+
+          
+        </form>
+    </div>
+</body>
+</html>
+

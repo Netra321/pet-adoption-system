@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ThePetNest - Adopt a Pet</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <style>
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    height: 40px;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.login-btn {
+    background-color: orange;
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+}
+
+.hero-img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.hero-text h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.adopt-btn {
+    margin-top: 10px;
+    background-color: orange;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.content {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+        </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <img src="logo.png" alt="ThePetNest Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Home services</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><button class="login-btn">Login</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <img src="dog.jpg" alt="Happy Dog" class="hero-img">
+        <div class="hero-text">
+            <h1>Re-Home and Adopt a Pet in India</h1>
+            <p>Every Pet Deserves a Good Home. #Adoptlove</p>
+            <button class="adopt-btn">Adopt a pet</button>
+        </div>
+    </section>
+
+    <section class="content">
+        <h2>Your Pet Adoption Journey With ThePetNest</h2>
+        <!-- Add additional content here -->
+    </section>
+</body>
+</html>

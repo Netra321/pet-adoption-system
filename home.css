@@ -1,0 +1,59 @@
+/* ---------- CSS RESET ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;line-height:1.6;background:#fafafa;color:#333}
+
+/* ---------- VARIABLES ---------- */
+:root{
+  --primary:#6c63ff;
+  --primary-dark:#574fe0;
+  --accent:#ff9a8b;
+  --radius:12px;
+  --shadow:0 4px 18px rgba(0,0,0,.1);
+  --max-width:1150px;
+}
+
+/* ---------- HEADER ---------- */
+.header{display:flex;align-items:center;gap:2rem;padding:1rem 2rem;background:#fff;
+        box-shadow:var(--shadow);position:sticky;top:0;z-index:10}
+.logo{font-size:1.4rem;font-weight:700;color:var(--primary-dark)}
+.nav{display:flex;gap:1.5rem;margin-left:auto}
+.nav a{color:#555;text-decoration:none;font-weight:500;position:relative}
+.nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;
+              background:var(--primary);transition:.3s}
+.nav a:hover::after{width:100%}
+.btn{background:var(--primary);color:#fff;padding:.55rem 1.25rem;
+     border-radius:var(--radius);text-decoration:none;font-weight:600}
+.burger{display:none;width:24px;height:24px;background:url("assets/burger.svg") center/cover no-repeat;border:none}
+
+/* ---------- HERO ---------- */
+.hero{display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:center;
+      max-width:var(--max-width);margin:3rem auto;padding:0 2rem}
+.hero__text h1{font-size:2.5rem;margin-bottom:1rem;color:var(--primary-dark)}
+.hero__text p{margin-bottom:1.5rem}
+.hero__img img{width:100%;border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* ---------- FEATURES ---------- */
+.features{background:#fff;padding:4rem 2rem}
+.features h2{text-align:center;margin-bottom:2.5rem;font-size:2rem;color:var(--primary-dark)}
+.feature‑grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));max-width:var(--max-width);margin:0 auto}
+.card{background:#f7f7ff;padding:1.5rem;border-radius:var(--radius);box-shadow:var(--shadow);font-weight:500}
+
+/* ---------- STORIES & BLOG ---------- */
+.stories,.blog{padding:4rem 2rem;max-width:var(--max-width);margin:0 auto}
+.stories h2,.blog h2{text-align:center;color:var(--primary-dark);margin-bottom:1.5rem}
+.lead{text-align:center;margin-bottom:2rem;color:#666}
+
+/* ---------- FOOTER ---------- */
+.footer{text-align:center;padding:2rem;font-size:.875rem;color:#777}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero__img{order:-1;margin-bottom:2rem}
+}
+@media(max-width:600px){
+  .nav{position:fixed;inset:0 0 0 auto;background:#fff;flex-direction:column;
+       padding:5rem 2rem;transform:translateX(100%);transition:.3s}
+  .nav.open{transform:none}
+  .burger{display:block;margin-left:auto}
+}
