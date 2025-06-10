@@ -1,7 +1,7 @@
 <%-- 
     Document   : book_appointment
     Created on : May 31, 2025, 7:34:12 PM
-    Author     : admin
+    Author     : Netra Patel
 --%>
 
 <%@ page import="java.sql.*, java.time.*, java.time.format.*" %>
@@ -12,6 +12,7 @@
 <%
     String sessionUser = (String) session.getAttribute("username");
     if (sessionUser == null) {
+        session.setAttribute("redirectUrl", request.getRequestURI());
         response.sendRedirect("login.jsp");
         return;
     }

@@ -2,7 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="db_conn.jsp" %>
 <%@include file="admin_side.html" %>
+<%
+    String sessionUser = (String) session.getAttribute("username");
+    String sessionRole = (String) session.getAttribute("role");
 
+    if (sessionUser == null || sessionRole == null || !sessionRole.equals("Admin")) {
+        session.setAttribute("redirectUrl", request.getRequestURI());
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

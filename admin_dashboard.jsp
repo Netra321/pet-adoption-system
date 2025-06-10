@@ -16,7 +16,11 @@
 <%
     int totalUsers = 0;
     int totalPets = 0;
+    int availablePets = 0;
+    int adoptedPets = 0;
     int pendingAdoptions = 0;
+    int totalAdopters = 0;
+    int totalVets = 0;
 
     try {
         String userQuery = "SELECT COUNT(*) FROM Users";
@@ -37,6 +41,24 @@
         petRs.close();
         petStmt.close();
 
+        String availablePetQuery = "SELECT COUNT(*) FROM Pets WHERE status='Available'";
+        Statement availableStmt = conn.createStatement();
+        ResultSet availableRs = availableStmt.executeQuery(availablePetQuery);
+        if (availableRs.next()) {
+            availablePets = availableRs.getInt(1);
+        }
+        availableRs.close();
+        availableStmt.close();
+
+        String adoptedPetQuery = "SELECT COUNT(*) FROM Pets WHERE status='Adopted'";
+        Statement adoptedStmt = conn.createStatement();
+        ResultSet adoptedRs = adoptedStmt.executeQuery(adoptedPetQuery);
+        if (adoptedRs.next()) {
+            adoptedPets = adoptedRs.getInt(1);
+        }
+        adoptedRs.close();
+        adoptedStmt.close();
+
         String adoptionQuery = "SELECT COUNT(*) FROM AdoptionRequests where status='Pending'";
         Statement adoptionStmt = conn.createStatement();
         ResultSet adoptionRs = adoptionStmt.executeQuery(adoptionQuery);
@@ -45,6 +67,24 @@
         }
         adoptionRs.close();
         adoptionStmt.close();
+
+        String adopterQuery = "SELECT COUNT(*) FROM Adopters";
+        Statement adopterStmt = conn.createStatement();
+        ResultSet adopterRs = adopterStmt.executeQuery(adopterQuery);
+        if (adopterRs.next()) {
+            totalAdopters = adopterRs.getInt(1);
+        }
+        adopterRs.close();
+        adopterStmt.close();
+
+        String vetQuery = "SELECT COUNT(*) FROM Veterinarians";
+        Statement vetStmt = conn.createStatement();
+        ResultSet vetRs = vetStmt.executeQuery(vetQuery);
+        if (vetRs.next()) {
+            totalVets = vetRs.getInt(1);
+        }
+        vetRs.close();
+        vetStmt.close();
 
     } catch (SQLException e) {
         e.printStackTrace();
@@ -62,73 +102,6 @@
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
     <style>
-/*        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f5ff;
-            color: #333;
-            padding-top: 80px;  Space for fixed navbar 
-        }
-
-         Navbar Styles 
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .navbar img {
-            height: 50px;
-            filter: brightness(0) invert(1);
-        }
-
-        .navbar nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar a:hover {
-            background-color: #1abc9c;
-        }
-
-        .logout-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-        }*/
-
         h1 {
             text-align: center;
             color: #2c3e50;
@@ -139,68 +112,75 @@
             padding: 20px;
             text-align: center;
         }
-/*        .sidebar {
-            width: 200px;
-            background: #2c3e50;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            padding-top: 100px;
-        }
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 12px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background: #1abc9c;
-        }*/
+
         .main {
-            /*margin-left: 100px;*/
-            /*margin-right: 100px;*/
             padding: 20px;
         }
+
         .card {
             background: white;
-            align-content:center;
+            align-content: center;
             padding: 20px 60px;
-            margin-bottom: 20px ;
+            margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border-radius: 8px;
         }
+
         h2 {
             color: #2c3e50;
+        }
+
+        /* Stats container */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Individual stat boxes */
+        .stat-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+            color: #2c3e50;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid #e3f2fd;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #bbdefb;
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #1976d2;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            font-weight: 500;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
 
-<!---->
-<!--    <div class="navbar">
-        <img src="pet_image/logo_white.png" alt="Admin Logo">
-        <nav>
-            <a href="admin_dashboard.jsp" style="background-color: #1abc9c;">Dashboard</a>
-            <a href="manage_users.jsp">Users</a>
-            <a href="admin_view_page.jsp">Pets</a>
-            <a href="view_adaption_request.jsp">Adoption Requests</a>
-            <a href="donation.html">Donations</a>
-            <a href="logout.jsp" class="logout-btn">Logout</a>
-        </nav>
-    </div>-->
 <div class="header">
     <h1>Pet To Home - Admin Dashboard</h1>
 </div>
-
-<!--<div class="sidebar">
-    <a href="manage_users.jsp">Manage Users</a>
-    <a href="admin_view_page.jsp">Manage Pets</a>
-    <a href="view_adaption_request.jsp">Adoption Requests</a>
-    <a href="donation.html">Donations</a>
-    <a href="feedback.html">Feedback</a>
-    <a href="logout.jsp">Logout</a>
-</div>-->
 
 <div class="main">
     <div class="card">
@@ -208,14 +188,42 @@
         <p>Select a section from the sidebar to manage the system.</p>
     </div>
 
-    <div class="card">
-        <h2>Quick Stats</h2>
-        <ul>
-            <li>Total Users       : <%= totalUsers %></li>
-            <li>Total Pets        : <%= totalPets %></li>
-            <li>Pending Adoptions : <%= pendingAdoptions %></li>
-            <li>Total Donations   : 0</li>
-        </ul>
+    <div class="stats-container">
+        <div class="stat-box users">
+            <div class="stat-icon">👥</div>
+            <div class="stat-number"><%= totalUsers %></div>
+            <div class="stat-label">Total Users</div>
+        </div>
+
+        <div class="stat-box pets">
+            <div class="stat-icon">🐾</div>
+            <div class="stat-number"><%= availablePets %></div>
+            <div class="stat-label">Available Pets</div>
+        </div>
+
+        <div class="stat-box adopted-pets">
+            <div class="stat-icon">🏡</div>
+            <div class="stat-number"><%= adoptedPets %></div>
+            <div class="stat-label">Adopted Pets</div>
+        </div>
+
+        <div class="stat-box adoptions">
+            <div class="stat-icon">❤️</div>
+            <div class="stat-number"><%= pendingAdoptions %></div>
+            <div class="stat-label">Pending Adoptions</div>
+        </div>
+
+        <div class="stat-box adopters">
+            <div class="stat-icon">👨‍👩‍👧‍👦</div>
+            <div class="stat-number"><%= totalAdopters %></div>
+            <div class="stat-label">Total Adopters</div>
+        </div>
+
+        <div class="stat-box vets">
+            <div class="stat-icon">🩺</div>
+            <div class="stat-number"><%= totalVets %></div>
+            <div class="stat-label">Total Vets</div>
+        </div>
     </div>
 </div>
 

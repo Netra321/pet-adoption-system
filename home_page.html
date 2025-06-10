@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Pet to Home</title>
     <style>
-/*        html {
-           
-        }*/
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            scroll-behavior: smooth;
+/*            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;*/
         }
-        
         body {
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f5ff;
             color: #333;
+            padding-top: 80px;
+            line-height: 1.6;
         }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
         /* Header Styles */
         header {
             display: flex;
@@ -37,62 +33,13 @@
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-/*        .logo {
-            width: 120px;
-            height: 60px;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #4a6eb5;
-            font-size: 1.5rem;
-        }
-        
-        .nav-bar {
-            flex: 1;
-            text-align: center;
-            padding: 0 20px;
-        }
-        
-        .nav-bar ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        
-        .nav-bar a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        
-        .nav-bar a:hover {
-            color: #4a6eb5;
-        }
-        
-        .search-bar {
-            flex: 0 0 300px;
-            display: flex;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }*/
-        
         /* Main Content Styles */
         .main-content {
             display: flex;
             margin: 2rem 0;
             gap: 2rem;
+            align-items: stretch; /* Ensure children match tallest height */
         }
-        
         .details-section {
             flex: 2;
             padding: 1.5rem;
@@ -100,72 +47,130 @@
             border-radius: 8px;
             background-color: #fff;
         }
-        
         .details-title {
             font-size: 1.8rem;
             color: #4a6eb5;
             margin-bottom: 1rem;
         }
-        
         .details-content {
             color: #555;
         }
-        
         .photo-section {
-            flex: 1;
-            height: 300px;
-            background-color: #f8f9fa;
+            flex: 1.2;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
-        
         .photo-placeholder {
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #eaeaea;
             color: #888;
         }
-        
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Fit image within container */
+        }
         /* Features Section */
         .features-section {
             padding: 2rem;
             margin: 2rem 0;
-            background-color: #f8f9fa;
-            border-radius: 8px;
+            background-color: #fff; /* Match user-experience */
+            border-radius: 8px; /* Match user-experience */
+            border: 1px solid #eee; /* Match user-experience */
             text-align: center;
         }
-        
         .features-title {
             font-size: 1.5rem;
             color: #4a6eb5;
             margin-bottom: 1.5rem;
         }
-        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
-        
         .feature-card {
-            background-color: #fff;
+            background-color: #f8f9fa; /* Match testimonial-card for pop-up effect */
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        
         .feature-icon {
             font-size: 2rem;
             color: #4a6eb5;
             margin-bottom: 1rem;
         }
-        
+        /* Blog Section */
+        .blog-section {
+            padding: 2rem;
+            margin: 2rem 0;
+            background-color: #fff; /* Match user-experience */
+            border-radius: 8px; /* Match user-experience */
+            border: 1px solid #eee; /* Match user-experience */
+            text-align: center;
+        }
+        .blog-title {
+            font-size: 1.5rem;
+            color: #4a6eb5;
+            margin-bottom: 1.5rem;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .blog-card {
+            background-color: #f8f9fa; /* Match testimonial-card for pop-up effect */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .blog-image {
+            height: 180px;
+            background-color: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            overflow: hidden; /* Prevent image overflow */
+        }
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Fit image within container */
+        }
+        .blog-content {
+            padding: 1.5rem;
+        }
+        .blog-content a {
+            color: #4a6eb5;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .blog-content a:hover {
+            color: #2a4a8c;
+        }
+        .view-more {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background-color: #4a6eb5;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .view-more:hover {
+            background-color: #2a4a8c;
+        }
         /* User Experience Section */
         .user-experience {
             padding: 2rem;
@@ -175,69 +180,23 @@
             text-align: center;
             border: 1px solid #eee;
         }
-        
         .experience-title {
             font-size: 1.5rem;
             color: #4a6eb5;
             margin-bottom: 1.5rem;
         }
-        
         .testimonials {
             display: flex;
             gap: 4.5rem;
             overflow-x: auto;
             padding: 1.5rem 1.5rem;
         }
-        
         .testimonial-card {
             flex: 0 0 300px;
             padding: 1.5rem;
             background-color: #f8f9fa;
             border-radius: 8px;
         }
-        
-        /* Blog Section */
-        .blog-section {
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-/*        .blog-image{
-            size: 30px;
-        }*/
-        
-        .blog-title {
-            font-size: 1.5rem;
-            color: #4a6eb5;
-            margin-bottom: 1.5rem;
-        }
-        
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .blog-card {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .blog-image {
-            height: 180px;
-            background-color: #eaeaea;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-        }
-        
-        .blog-content {
-            padding: 1.5rem;
-        }
-        
         /* Footer Styles */
         footer {
             background-color: #333;
@@ -245,43 +204,35 @@
             padding: 3rem 0;
             margin-top: 2rem;
         }
-        
         .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 2rem;
         }
-        
         .footer-column {
             flex: 1;
             min-width: 200px;
         }
-        
         .footer-column h3 {
             font-size: 1.2rem;
             margin-bottom: 1rem;
             color: #4a6eb5;
         }
-        
         .footer-column ul {
             list-style: none;
         }
-        
         .footer-column ul li {
             margin-bottom: 0.5rem;
         }
-        
         .footer-column a {
             color: #ddd;
             text-decoration: none;
             transition: color 0.3s;
         }
-        
         .footer-column a:hover {
             color: #4a6eb5;
         }
-        
         .footer-bottom {
             margin-top: 2rem;
             text-align: center;
@@ -291,42 +242,20 @@
     </style>
 </head>
 <body>
-<div id="header"></div>
-
-<script>
-  fetch('navigation_page.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('header').innerHTML = data;
-    });
-</script>
-
-    <!-- Header with Logo and Navigation -->
-<!--    <header>
-        <div class="logo">PetFinder</div>
-        <nav class="nav-bar">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Adopt</a></li>
-                <li><a href="#">Donate</a></li>
-                <li><a href="#">Volunteer</a></li>
-                <li><a href="#">About Us</a></li>
-            </ul>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search pets...">
-        </div>
-    </header>-->
-    
+    <div id="header"></div>
+    <script>
+      fetch('navigation_page.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header').innerHTML = data;
+        });
+    </script>
     <div class="container">
         <!-- Main Content Section with Details and Photo -->
         <div class="main-content">
             <div class="details-section" id="details-section">
                 <h2 class="details-title">Welcome to Pet to Home!</h2>
                 <div class="details-content">
-<!--                    <p>Welcome to our Pet To Home where we connect loving pets with caring homes. Our system makes it easy to browse available pets, learn about their personalities, and start the adoption process.</p>
-                    <p>We have cats, dogs, rabbits, and many other animals looking for their forever homes. All our pets are vaccinated, microchipped, and health-checked before adoption.</p>
-                    <p>Browse through our listings or use the search function to find the perfect match for your lifestyle and home environment.</p>-->
                     <p>Your one-stop destination for finding loving homes for pets in need.</p>
                     <p>At Pet to Home, we connect kind-hearted adopters with adorable pets who are waiting for a second chance at happiness.</p>
                     <p>Whether you're looking to adopt, browse available pets, or share your own pet’s story, our platform makes the journey simple, caring, and compassionate.</p> 
@@ -335,11 +264,10 @@
             </div>
             <div class="photo-section">
                 <div class="photo-placeholder">
-                    <img src="pet_image/14-tiger.jpg" alt="Pet Photo">
+                    <img src="pet_image/tiger1.jpg" alt="Pet Photo">
                 </div>
             </div>
         </div>
-        
         <!-- Features Section -->
         <div class="features-section">
             <h2 class="features-title">Our System Features</h2>
@@ -366,7 +294,37 @@
                 </div>
             </div>
         </div>
-        
+        <!-- Blog Section -->
+        <div class="blog-section" id="blog-section">
+            <h2 class="blog-title">Blogs</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image"><img src="pet_image/adopt_not_buy.jpg" alt="Adopt Not Shop"></div>
+                    <div class="blog-content">
+                        <h3>Why Adopt, Not Shop: The Importance of Pet Adoption</h3>
+                        <p>Discover why choosing adoption over buying from breeders helps save lives and supports ethical pet ownership.</p>
+                        <a href="https://foreverfurandlove.blogspot.com/2025/06/why-adopt-not-shop-importance-of.html" target="_blank">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="pet_image/five_freedom.jpg" alt="Animal Welfare"></div>
+                    <div class="blog-content">
+                        <h3>The Five Freedoms of Animal Welfare</h3>
+                        <p>Learn about the five essential freedoms that ensure a happy and healthy life for your pets.</p>
+                        <a href="https://foreverfurandlove.blogspot.com/2025/06/the-five-freedoms-of-animal-welfare.html" target="_blank">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><img src="pet_image/mental_health.jpg" alt="Mental Health"></div>
+                    <div class="blog-content">
+                        <h3>How Pets Improve Our Mental Health</h3>
+                        <p>Explore the science behind how pets can reduce stress and boost your emotional well-being.</p>
+                        <a href="https://foreverfurandlove.blogspot.com/2025/06/how-pets-improve-our-mental-health.html" target="_blank">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <a href="view_blogs.jsp" class="view-more">View More</a>
+        </div>
         <!-- User Experience Section -->
         <div class="user-experience">
             <h2 class="experience-title" id="experience-title">Success Stories</h2>
@@ -384,37 +342,9 @@
                     <strong>- Sneha Reddy</strong>
                 </div>
             </div>
+            <a href="feedbacks_users.jsp" class="view-more">View More</a>
         </div>
-        
-        <!-- Blog Section -->
-<!--        <div class="blog-section" id="blog-section">
-            <h2 class="blog-title">Pet Care Blog</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-image"><img src="pet_image/human_feedind_dog.jpg"></div>
-                    <div class="blog-content">
-                        <h3>First-Time Pet Owner Tips</h3>
-                        <p>Essential advice for welcoming a new pet into your home.</p>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-image">Blog Image</div>
-                    <div class="blog-content">
-                        <h3>Senior Pet Care</h3>
-                        <p>How to provide the best care for older pets.</p>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-image">Blog Image</div>
-                    <div class="blog-content">
-                        <h3>Training Your Rescue Dog</h3>
-                        <p>Patience and techniques for helping your new dog adjust.</p>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
-    
     <!-- Footer -->
     <footer>
         <div class="container" id="container">
@@ -423,8 +353,6 @@
                     <h3>About Us</h3>
                     <ul>
                         <li><a href="#details-section">Our Mission</a></li>
-                        <!--<li><a href="#">Team</a></li>-->
-                        <!--<li><a href="#">Partners</a></li>-->
                         <li><a href="#experience-title">Success Stories</a></li>
                     </ul>
                 </div>
@@ -433,31 +361,25 @@
                     <ul>
                         <li><a href="view_pet.jsp">Available Pets</a></li>
                         <li><a href="view_pet.jsp">Adoption Process</a></li>
-                        <!--<li><a href="#">Adoption Fees</a></li>-->
-                        <!--<li><a href="#">Foster Program</a></li>-->
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a href="#user-experience">Pet Care Tips</a></li>
-                        <li><a href="#user-experience">Training Guides</a></li>
-                        <!--<li><a href="#">Veterinary Services</a></li>-->
-                        <!--<li><a href="#">FAQs</a></li>-->
+                        <li><a href="view_blogs.jsp">Pet Care Tips</a></li>
+                        <li><a href="view_blogs.jsp">Training Guides</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><a href="#user-experience">pettohome@gmail.in</a></li>
+                        <li><a href="#user-experience">pettohome@gmail.com</a></li>
                         <li><a href="#user-experience">+91 89435 76591</a></li>
-                        <!--<li><a href="#user-experience">Location</a></li>-->
-                        <!--<li><a href="#">Volunteer</a></li>-->
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 PetFinder Adoption System. All rights reserved.</p>
+                <p>© 2025 Pet To Home Adoption System. All rights reserved.</p>
             </div>
         </div>
     </footer>

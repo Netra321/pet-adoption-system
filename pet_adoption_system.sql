@@ -164,6 +164,7 @@ INSERT INTO Pets (name, species, breed, age, gender, weight, height, description
  'Warehouse shut down, left behind.');
 
 select * from Pets;
+
 -- Adopters Table
 CREATE TABLE Adopters (
     user_id smallint unsigned PRIMARY KEY,
@@ -329,7 +330,7 @@ INSERT INTO Veterinarians (
     'Tuesday to Sunday', '11:00 AM - 2:00 PM, 6:00 PM - 9:00 PM',
     'Offers annual health check packages for pets.');
 select * from Veterinarians;
-drop table Veterinarians;
+-- drop table Veterinarians;
 
 -- Images of pet table for multiple images
 -- CREATE TABLE PetImages (
