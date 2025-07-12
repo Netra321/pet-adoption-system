@@ -15,6 +15,4 @@ Features:
 
 💬 Feedback submission from adopters
 
-💰 Donation management
-
-📊 Dashboard for admin to view total requests, donations, and adoption stats
+📊 Dashboard for admin to view total pets, users, requests, appointments and adoption stats
