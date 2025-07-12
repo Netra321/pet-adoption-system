@@ -2,7 +2,7 @@ Pet Adoption System is a java based web application that simplifies the pet adop
 
 Developed as part of the Semester 6 project using JSP, Servlets, JDBC,Java, html, css and MySQL.
 
-Features:
+## Features:
 
 
 🐶 Register pets available for adoption
